@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  demo-build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: |
+          git clone https://github.com/PixelExperience-Devices/kernel_xiaomi_msm8953.git -b twelve
+          cd kernel_xiaomi_msm8953 && curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          make
+          ls -al
